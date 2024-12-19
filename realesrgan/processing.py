@@ -14,7 +14,7 @@ def run_model(input_image, filename: str, scale="2"):
         return
     
     output_img = f"{OUT_DIR}/out_{filename}.jpg"
-    print(f'Input path: {input_image}\nOutput path: {output_img}')
+    print(f'Input path: {input_image}\nOutput  path: {output_img}')
     cmd = [BINARY_PATH, "-i", input_image, "-o", output_img, "-s", scale]
 
     # Execute the binary
@@ -23,15 +23,13 @@ def run_model(input_image, filename: str, scale="2"):
         print("Processing image...")
 
         result = subprocess.run(cmd, capture_output=True, text=True)
-        time.sleep(2)
+
+        print(f'Return code: {result.returncode}\nArgs: {result.args}\nStdout: {result.stdout}\nStderr: {result.stderr}')
 
         print("Processing completed successfully!")
         print(f'After:\n{list_tmp_files()}')
 
-        if os.path.exists(output_img):
-            return output_img
-        else:
-            return 'assets/error.png'
+        return output_img
     except subprocess.CalledProcessError as e:
         print("STDOUT:", e.stdout)
         print("STDERR:", e.stderr)
