@@ -2,7 +2,7 @@ import subprocess
 from utils import get_timestamp
 
 # Used by render
-OUT_DIR = '/temp'
+OUT_DIR = '/tmp'
 BINARY_PATH = "binary/realesrgan-ncnn-vulkan"
 
 
@@ -16,6 +16,7 @@ def run_model(input_image, scale="2"):
 
     # Execute the binary
     try:
+        print("Processing image...")
         result = subprocess.run(cmd, capture_output=True, text=True)
         print("Processing completed successfully!")
         return output_img

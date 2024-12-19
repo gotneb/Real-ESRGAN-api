@@ -18,7 +18,7 @@ async def root():
     return {"message": "Hello World"}
 
 
-# curl -X POST "http://127.0.0.1:8000/upscale/" -F "img=@filename.jpg"
+# curl -X POST "http://127.0.0.1:8000/upscale/" -F "img=@filename.jpg" -o ~/Downloads/filename.jpg
 @app.post('/upscale/')
 async def upscale_image(img: UploadFile, background_tasks: BackgroundTasks):
     filename = get_timestamp()
