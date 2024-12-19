@@ -10,6 +10,8 @@ from io import BytesIO
 from realesrgan.processing import run_model
 from utils import save_image, get_timestamp, delete_file
 
+ERROR_IMG_PATH = 'assets/error.png'
+
 app = FastAPI()
 
 
@@ -32,5 +34,6 @@ async def upscale_image(img: UploadFile, background_tasks: BackgroundTasks):
         background_tasks.add_task(delete_file, upscaled_img_path)
 
         return FileResponse(upscaled_img_path)
-    except Exception as e:
-        return {"error": "Invalid image file", "message": str(e)}
+    except Exception:
+        print('Error wwhile trying upscaling image...')
+        return FileResponse(ERROR_IMG_PATH)
