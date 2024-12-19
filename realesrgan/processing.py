@@ -14,6 +14,7 @@ def run_model(input_image, filename: str, scale="2"):
         return
     
     output_img = f"{OUT_DIR}/out_{filename}.jpg"
+    print(f'Input path: {input_image}\nOutput path: {output_img}')
     cmd = [BINARY_PATH, "-i", input_image, "-o", output_img, "-s", scale]
 
     # Execute the binary
