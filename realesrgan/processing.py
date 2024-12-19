@@ -25,3 +25,5 @@ def run_model(input_image, filename: str, scale="2"):
     except subprocess.CalledProcessError as e:
         print("STDOUT:", e.stdout)
         print("STDERR:", e.stderr)
+    except e:
+        print(f'Error in run_model:\n{e}')
