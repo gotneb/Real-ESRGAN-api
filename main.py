@@ -34,8 +34,3 @@ async def upscale_image(img: UploadFile, background_tasks: BackgroundTasks):
         return FileResponse(upscaled_img_path)
     except Exception as e:
         return {"error": "Invalid image file", "message": str(e)}
-    # finally:
-    #     # Clean cached imgs
-    #     dirs = ['tmp', 'outputs']
-    #     for dir in dirs:
-    #         delete_file(f'{dir}/{filename}.jpg')

@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-TMP_DIR = '.tmp'
+TMP_DIR = '/tmp'
 
 def save_image(img, filename: str): 
     path = f'{TMP_DIR}/{filename}.jpg'

@@ -1,14 +1,11 @@
 import subprocess
 
 BINARY_PATH = "binary/realesrgan-ncnn-vulkan"
-
-# Input and output image paths
-# input_image = "inputs/input.jpg"
 OUT_DIR = '.outputs'
 
 def run_model(input_image, filename: str, scale="2"):
     if scale not in ["2", "3", "4"]:
-        print("Invalid scale parameter!")
+        print(f'Invalid scale \"{scale}\" parameter!')
         return
     
     output_img = f"{OUT_DIR}/{filename}.jpg"
@@ -20,6 +17,5 @@ def run_model(input_image, filename: str, scale="2"):
         print("Processing completed successfully!")
         return output_img
     except subprocess.CalledProcessError as e:
-        print("Error ocurred")
         print("STDOUT:", e.stdout)
         print("STDERR:", e.stderr)
