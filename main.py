@@ -34,6 +34,6 @@ async def upscale_image(img: UploadFile, background_tasks: BackgroundTasks):
         background_tasks.add_task(delete_file, upscaled_img_path)
 
         return FileResponse(upscaled_img_path)
-    except Exception:
-        print('Error wwhile trying upscaling image...')
+    except Exception as e:
+        print(f'Error while trying upscaling image:\n{e}')
         return FileResponse(ERROR_IMG_PATH)
