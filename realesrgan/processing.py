@@ -1,4 +1,5 @@
 import subprocess
+import os
 from utils import get_timestamp, list_tmp_files
 
 # Used by render
@@ -21,7 +22,11 @@ def run_model(input_image, filename: str, scale="2"):
         result = subprocess.run(cmd, capture_output=True, text=True)
         print("Processing completed successfully!")
         print(f'After:\n{list_tmp_files()}')
-        return output_img
+
+        if os.path.exists(output_img):
+            return output_img
+        else:
+            return 'assets/error.png'
     except subprocess.CalledProcessError as e:
         print("STDOUT:", e.stdout)
         print("STDERR:", e.stderr)
