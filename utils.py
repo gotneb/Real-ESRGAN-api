@@ -1,8 +1,10 @@
 import os
 from datetime import datetime
 
+TMP_DIR = '.tmp'
+
 def save_image(img, filename: str): 
-    path = f'tmp/{filename}.jpg'
+    path = f'{TMP_DIR}/{filename}.jpg'
     with open(path, 'wb') as f:
         f.write(img.read())
         print("File sucessfully saved!")
