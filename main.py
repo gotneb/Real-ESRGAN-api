@@ -30,8 +30,8 @@ async def upscale_image(img: UploadFile, background_tasks: BackgroundTasks):
         upscaled_img_path = run_model(img_path, filename=filename)
         print(f'Upscaled: {upscaled_img_path}')
 
-        background_tasks.add_task(delete_file, img_path)
-        background_tasks.add_task(delete_file, upscaled_img_path)
+        # background_tasks.add_task(delete_file, img_path)
+        # background_tasks.add_task(delete_file, upscaled_img_path)
 
         return FileResponse(upscaled_img_path)
     except Exception as e:
