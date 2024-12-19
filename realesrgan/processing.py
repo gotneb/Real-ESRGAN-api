@@ -1,14 +1,17 @@
 import subprocess
+from utils import get_timestamp
 
+# Used by render
+OUT_DIR = '/temp'
 BINARY_PATH = "binary/realesrgan-ncnn-vulkan"
-OUT_DIR = '.outputs'
 
-def run_model(input_image, filename: str, scale="2"):
+
+def run_model(input_image, scale="2"):
     if scale not in ["2", "3", "4"]:
         print(f'Invalid scale \"{scale}\" parameter!')
         return
     
-    output_img = f"{OUT_DIR}/{filename}.jpg"
+    output_img = f"{OUT_DIR}/{get_timestamp()}.jpg"
     cmd = [BINARY_PATH, "-i", input_image, "-o", output_img, "-s", scale]
 
     # Execute the binary

@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 
+# Used by render
 TMP_DIR = '/tmp'
 
 def save_image(img, filename: str): 
