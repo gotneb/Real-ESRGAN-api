@@ -1,0 +1,14 @@
+previews:
+  generation: automatic # Enable preview environments
+
+
+services:
+  # A web service on the Python native runtime
+  - type: web
+    runtime: python
+    name: real-esrgan-api
+    repo: https://github.com/gotneb/Real-ESRGAN-api
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: fastapi run
