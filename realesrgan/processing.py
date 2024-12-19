@@ -1,5 +1,5 @@
 import subprocess
-from utils import get_timestamp
+from utils import get_timestamp, list_tmp_files
 
 # Used by render
 OUT_DIR = '/tmp'
@@ -16,9 +16,11 @@ def run_model(input_image, filename: str, scale="2"):
 
     # Execute the binary
     try:
+        print(f'Before:\n{list_tmp_files()}')
         print("Processing image...")
         result = subprocess.run(cmd, capture_output=True, text=True)
         print("Processing completed successfully!")
+        print(f'After:\n{list_tmp_files()}')
         return output_img
     except subprocess.CalledProcessError as e:
         print("STDOUT:", e.stdout)

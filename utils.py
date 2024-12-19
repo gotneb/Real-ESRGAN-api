@@ -25,3 +25,8 @@ def delete_file(file_path):
         print(f"Permission denied: Unable to delete {file_path}.")
     except Exception as e:
         print(f"An error occurred while deleting the file: {e}")
+
+def list_tmp_files():
+    tmp_dir = "/tmp"
+    files = os.listdir(tmp_dir)
+    return files

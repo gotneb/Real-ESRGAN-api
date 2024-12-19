@@ -8,7 +8,7 @@ from PIL import Image
 from io import BytesIO
 
 from realesrgan.processing import run_model
-from utils import save_image, get_timestamp, delete_file
+from utils import save_image, get_timestamp, delete_file, list_tmp_files
 
 ERROR_IMG_PATH = 'assets/error.png'
 
@@ -29,6 +29,7 @@ async def upscale_image(img: UploadFile, background_tasks: BackgroundTasks):
     try:
         upscaled_img_path = run_model(img_path, filename=filename)
         print(f'Upscaled: {upscaled_img_path}')
+        print(f'After Upscaled:\n{list_tmp_files()}')
 
         # background_tasks.add_task(delete_file, img_path)
         # background_tasks.add_task(delete_file, upscaled_img_path)
