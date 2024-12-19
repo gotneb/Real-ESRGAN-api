@@ -6,12 +6,12 @@ OUT_DIR = '/tmp'
 BINARY_PATH = "binary/realesrgan-ncnn-vulkan"
 
 
-def run_model(input_image, scale="2"):
+def run_model(input_image, filename: str, scale="2"):
     if scale not in ["2", "3", "4"]:
         print(f'Invalid scale \"{scale}\" parameter!')
         return
     
-    output_img = f"{OUT_DIR}/{get_timestamp()}.jpg"
+    output_img = f"{OUT_DIR}/out_{filename}.jpg"
     cmd = [BINARY_PATH, "-i", input_image, "-o", output_img, "-s", scale]
 
     # Execute the binary

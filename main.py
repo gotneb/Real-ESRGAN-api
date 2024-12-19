@@ -23,10 +23,11 @@ async def root():
 # curl -X POST "http://127.0.0.1:8000/upscale/" -F "img=@filename.jpg" -o ~/Downloads/filename.jpg
 @app.post('/upscale/')
 async def upscale_image(img: UploadFile, background_tasks: BackgroundTasks):
-    img_path = save_image(img.file, filename=get_timestamp())
+    filename = get_timestamp()
+    img_path = save_image(img.file, filename=filename)
 
     try:
-        upscaled_img_path = run_model(img_path)
+        upscaled_img_path = run_model(img_path, filename=filename)
         print(f'Upscaled: {upscaled_img_path}')
 
         background_tasks.add_task(delete_file, img_path)
